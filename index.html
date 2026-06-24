@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faustin Nizeyimana — Statistician & Data Analyst</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    :root {
+      --blue-900:#0a1628;--blue-800:#0d2040;--blue-700:#1a3a6b;
+      --blue-600:#1e4d9b;--blue-500:#2563eb;--blue-400:#3b82f6;
+      --blue-300:#93c5fd;--blue-200:#bfdbfe;--blue-100:#dbeafe;
+      --blue-50:#eff6ff;--white:#ffffff;
+      --gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;
+      --gray-400:#94a3b8;--gray-600:#475569;--gray-900:#0f172a;
+      --gold:#f59e0b;--green:#10b981;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--white);color:var(--gray-900);line-height:1.7;font-weight:400;}
+    h1,h2,h3,h4{font-weight:700;}
+    .section-tag,.skills-label,.edu-degree,.cert-name,.focus-title,.project-title,.contact-card h3{font-weight:600;}
+    .btn-primary,.btn-outline,.nav-cta,.platform-btn,.social-pill{font-weight:500!important;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:999;background:var(--blue-900);border-bottom:1px solid var(--blue-700);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo{font-size:18px;font-weight:800;color:var(--white);letter-spacing:-0.5px;}
+    .nav-logo span{color:var(--blue-400);}
+    .nav-links{display:flex;gap:24px;list-style:none;}
+    .nav-links a{color:var(--blue-200);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
+    .nav-links a:hover{color:var(--white);}
+    .nav-cta{background:var(--blue-500);color:var(--white)!important;padding:8px 18px;border-radius:6px;font-weight:600!important;}
+    .nav-cta:hover{background:var(--blue-400)!important;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;}
+
+    /* HERO */
+    .hero{min-height:100vh;background:var(--blue-900);display:flex;align-items:center;padding:100px 40px 80px;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:var(--blue-700);opacity:0.12;top:-150px;right:-100px;}
+    .hero::after{content:'';position:absolute;width:250px;height:250px;border-radius:50%;background:var(--blue-600);opacity:0.08;bottom:-60px;left:80px;}
+    .hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 260px;gap:60px;align-items:center;position:relative;z-index:2;}
+    .hero-name-tag{display:inline-flex;align-items:center;gap:10px;background:var(--blue-800);border:1px solid var(--blue-600);color:var(--blue-300);font-size:13px;font-weight:700;letter-spacing:0.5px;padding:8px 18px;border-radius:24px;margin-bottom:24px;}
+    .hero-flag{display:flex;height:3px;width:28px;border-radius:2px;overflow:hidden;}
+    .hero-flag div{flex:1;}
+    .hero h1{font-size:clamp(34px,5vw,62px);font-weight:800;color:var(--white);line-height:1.08;letter-spacing:-2px;margin-bottom:22px;}
+    .hero h1 .accent{color:var(--blue-400);}
+    .hero-desc{font-size:15px;color:var(--blue-200);max-width:520px;margin-bottom:36px;line-height:1.85;text-align:justify;}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+    .btn-primary{background:var(--blue-500);color:var(--white);padding:13px 30px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:background 0.2s;display:inline-block;}
+    .btn-primary:hover{background:var(--blue-400);}
+    .btn-outline{background:transparent;border:1.5px solid var(--blue-600);color:var(--blue-200);padding:13px 30px;border-radius:8px;font-weight:600;font-size:14px;text-decoration:none;transition:all 0.2s;display:inline-block;}
+    .btn-outline:hover{border-color:var(--blue-400);color:var(--white);}
+
+    /* Profile photo */
+    .hero-photo-col{display:flex;flex-direction:column;align-items:center;gap:16px;}
+    .photo-ring{width:210px;height:210px;border-radius:50%;border:3px solid var(--blue-500);background:var(--blue-800);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .photo-ring img{width:100%;height:100%;object-fit:cover;display:block;}
+    .photo-placeholder{font-size:80px;line-height:1;color:var(--blue-600);user-select:none;}
+    .photo-caption{text-align:center;}
+    .photo-caption strong{display:block;color:var(--white);font-size:15px;font-weight:700;margin-bottom:2px;}
+    .photo-caption span{font-size:12px;color:var(--blue-300);line-height:1.6;}
+    .hero-socials{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;justify-content:center;}
+    .social-pill{display:inline-flex;align-items:center;gap:6px;background:var(--blue-800);border:1px solid var(--blue-600);color:var(--blue-200);padding:7px 13px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:600;transition:all 0.2s;}
+    .social-pill:hover{background:var(--blue-600);color:var(--white);}
+    .social-pill.wa:hover{background:#25D366;border-color:#25D366;}
+    .social-pill.li:hover{background:#0A66C2;border-color:#0A66C2;}
+
+    /* SHARED */
+    .section{padding:88px 40px;}
+    .section-inner{max-width:1100px;margin:0 auto;}
+    .section-tag{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-500);margin-bottom:8px;}
+    .section-title{font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-1px;color:var(--gray-900);margin-bottom:12px;}
+    .section-desc{font-size:15px;color:var(--gray-600);max-width:600px;margin-bottom:48px;line-height:1.8;}
+    .on-dark .section-tag{color:var(--blue-400);}
+    .on-dark .section-title{color:var(--white);}
+    .on-dark .section-desc{color:var(--blue-200);}
+
+    /* ABOUT */
+    .about{background:var(--gray-100);}
+    .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:start;}
+    .about-text{font-size:15px;color:var(--gray-600);line-height:1.9;text-align:justify;}
+    .about-text p{margin-bottom:16px;}
+    .about-text strong{color:var(--gray-900);font-weight:600;}
+    .skills-group{margin-bottom:24px;}
+    .skills-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-500);margin-bottom:10px;}
+    .skills-list{display:flex;flex-wrap:wrap;gap:8px;}
+    .skill-tag{background:var(--blue-50);border:1px solid var(--blue-200);color:var(--blue-700);padding:5px 13px;border-radius:20px;font-size:12px;font-weight:600;}
+    .skill-tag.soft{background:#f0fdf4;border-color:#bbf7d0;color:#166534;}
+    .lang-tag{background:#fefce8;border:1px solid #fde68a;color:#92400e;padding:5px 13px;border-radius:20px;font-size:12px;font-weight:600;}
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .stat-card{background:var(--white);border:1px solid var(--gray-200);border-left:4px solid var(--blue-500);border-radius:10px;padding:22px 18px;}
+    .stat-value{font-size:34px;font-weight:800;color:var(--blue-600);line-height:1;margin-bottom:6px;}
+    .stat-label{font-size:12px;color:var(--gray-600);font-weight:500;line-height:1.4;}
+
+    /* FOCUS AREAS */
+    .focus{background:var(--white);}
+    .focus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
+    .focus-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:14px;padding:30px 24px;transition:border-color 0.2s,transform 0.2s;}
+    .focus-card:hover{border-color:var(--blue-400);transform:translateY(-4px);}
+    .focus-icon{width:50px;height:50px;border-radius:12px;background:var(--blue-50);border:1px solid var(--blue-200);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;}
+    .focus-title{font-size:15px;font-weight:700;color:var(--gray-900);margin-bottom:8px;}
+    .focus-desc{font-size:13px;color:var(--gray-600);line-height:1.7;text-align:justify;}
+    .focus-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+    .focus-tag{background:var(--blue-50);color:var(--blue-600);border:1px solid var(--blue-200);padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600;}
+
+    /* PROJECTS */
+    .projects{background:var(--blue-900);}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+    .project-card{background:var(--blue-800);border:1px solid var(--blue-700);border-radius:14px;padding:28px;transition:border-color 0.2s,transform 0.2s;}
+    .project-card:hover{border-color:var(--blue-400);transform:translateY(-3px);}
+    .project-badge{display:inline-block;background:var(--blue-700);color:var(--blue-300);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:10px;margin-bottom:14px;}
+    .project-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:10px;}
+    .project-desc{font-size:13px;color:var(--blue-200);line-height:1.7;margin-bottom:16px;}
+    .project-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
+    .project-tag{background:var(--blue-900);color:var(--blue-300);border:1px solid var(--blue-700);padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600;}
+    .project-link{color:var(--blue-400);font-size:13px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+    .project-link:hover{color:var(--white);}
+
+    /* EDUCATION */
+    .education{background:var(--gray-100);}
+    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+    .edu-card{background:var(--white);border:1px solid var(--gray-200);border-radius:14px;overflow:hidden;}
+    .edu-card-top{padding:24px 24px 16px;}
+    .edu-card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;}
+    .edu-icon{width:46px;height:46px;border-radius:10px;background:var(--blue-50);border:1px solid var(--blue-200);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+    .edu-degree{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:3px;}
+    .edu-school{font-size:13px;color:var(--blue-500);font-weight:600;}
+    .edu-year{font-size:11px;color:var(--gray-400);margin-top:2px;font-weight:500;}
+    .edu-divider{border:none;border-top:1px solid var(--gray-200);margin:0 24px;}
+    .edu-desc{font-size:13px;color:var(--gray-600);line-height:1.7;padding:14px 24px;}
+    .pdf-toggle-btn{display:flex;align-items:center;justify-content:space-between;width:100%;background:var(--blue-50);border:none;border-top:1px solid var(--blue-200);color:var(--blue-600);padding:12px 24px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.2s;}
+    .pdf-toggle-btn:hover{background:var(--blue-100);}
+    .pdf-toggle-btn .toggle-arrow{transition:transform 0.3s;font-style:normal;font-size:14px;}
+    .pdf-viewer{display:none;border-top:1px solid var(--blue-200);background:var(--gray-50);}
+    .pdf-viewer.open{display:block;}
+    .pdf-viewer iframe{width:100%;height:480px;border:none;display:block;}
+    .pdf-viewer .no-download-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;background:var(--blue-50);font-size:11px;color:var(--blue-600);font-weight:600;}
+
+    /* cert cards grid */
+    .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px;}
+    .cert-card{background:var(--white);border:1px solid var(--gray-200);border-radius:12px;overflow:hidden;}
+    .cert-card-top{padding:20px 20px 14px;display:flex;gap:12px;align-items:flex-start;}
+    .cert-icon{width:40px;height:40px;border-radius:8px;background:var(--blue-50);border:1px solid var(--blue-200);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .cert-name{font-size:13px;font-weight:700;color:var(--gray-900);margin-bottom:2px;}
+    .cert-issuer{font-size:11px;color:var(--blue-500);font-weight:600;}
+    .cert-year{font-size:11px;color:var(--gray-400);}
+
+    /* RESUME */
+    .resume-section{background:var(--white);}
+    .resume-box{background:var(--blue-900);border-radius:16px;padding:44px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+    .resume-box h3{font-size:22px;font-weight:800;color:var(--white);margin-bottom:8px;}
+    .resume-box p{font-size:14px;color:var(--blue-200);max-width:420px;line-height:1.7;}
+    .resume-btns{display:flex;gap:12px;flex-wrap:wrap;}
+    .resume-embed{margin-top:28px;}
+    .resume-pdf-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--gray-200);}
+    .resume-pdf-wrap iframe{width:100%;height:520px;border:none;display:block;}
+    .resume-pdf-header{display:flex;align-items:center;justify-content:space-between;background:var(--blue-50);border-bottom:1px solid var(--blue-200);padding:10px 20px;}
+    .resume-pdf-header span{font-size:12px;font-weight:700;color:var(--blue-600);}
+    .resume-close-btn{background:none;border:none;font-size:18px;cursor:pointer;color:var(--blue-600);line-height:1;}
+
+    /* CONTACT */
+    .contact{background:var(--blue-900);}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+    .contact-card{background:var(--blue-800);border:1px solid var(--blue-700);border-radius:14px;padding:30px;}
+    .contact-card h3{font-size:16px;font-weight:700;color:var(--white);margin-bottom:20px;}
+    .contact-item{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+    .contact-icon{width:38px;height:38px;border-radius:9px;background:var(--blue-700);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+    .contact-label{font-size:10px;color:var(--blue-400);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+    .contact-value{font-size:14px;color:var(--white);font-weight:500;}
+    .contact-value a{color:var(--blue-300);text-decoration:none;}
+    .contact-value a:hover{color:var(--white);}
+    .platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .platform-btn{display:flex;align-items:center;gap:10px;background:var(--blue-700);border:1px solid var(--blue-600);color:var(--white);text-decoration:none;padding:13px 16px;border-radius:10px;font-size:13px;font-weight:600;transition:background 0.2s;}
+    .platform-btn:hover{background:var(--blue-600);}
+    .platform-btn.wa:hover{background:#25D366;border-color:#25D366;}
+    .platform-btn.li:hover{background:#0A66C2;border-color:#0A66C2;}
+    .platform-icon{font-size:20px;flex-shrink:0;}
+    .platform-sub{font-size:11px;opacity:0.65;font-weight:400;}
+
+    /* FOOTER */
+    footer{background:var(--blue-900);border-top:1px solid var(--blue-800);padding:26px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+    .footer-left{font-size:13px;color:var(--blue-300);}
+    .footer-left strong{color:var(--white);}
+    .footer-flag{display:flex;height:3px;width:50px;border-radius:2px;overflow:hidden;margin-top:8px;}
+    .footer-flag div{flex:1;}
+    .footer-right{font-size:12px;color:var(--blue-400);text-align:right;line-height:1.8;}
+
+    /* MOBILE */
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr;}
+      .hero-photo-col{display:none;}
+      .about-grid{grid-template-columns:1fr;gap:36px;}
+      .contact-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:640px){
+      nav{padding:0 16px;}
+      .nav-links{display:none;position:fixed;top:64px;left:0;right:0;background:var(--blue-900);flex-direction:column;padding:20px;gap:0;border-bottom:1px solid var(--blue-700);}
+      .nav-links.open{display:flex;}
+      .nav-links li{border-bottom:1px solid var(--blue-800);}
+      .nav-links a{display:block;padding:12px 0;font-size:15px;}
+      .nav-cta{margin-top:8px;display:inline-block;border-radius:6px;padding:10px 0;text-align:center;}
+      .hamburger{display:flex;}
+      .hero{padding:88px 20px 60px;}
+      .section{padding:60px 20px;}
+      .section-title{letter-spacing:-0.5px;}
+      .resume-box{padding:28px 20px;flex-direction:column;}
+      .stats-grid{grid-template-columns:1fr 1fr;}
+      footer{padding:20px;flex-direction:column;text-align:center;}
+      .footer-right{text-align:center;}
+      .footer-flag{margin:6px auto 0;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Faustin<span>.</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#focus">Focus</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-name-tag">
+        <span class="hero-flag">
+          <div style="background:#20603D"></div>
+          <div style="background:#FAD201"></div>
+          <div style="background:#20A0D0"></div>
+        </span>
+        FAUSTIN NIZEYIMANA
+      </div>
+      <h1>Statistician &amp;<br><span class="accent">Data Analyst</span></h1>
+      <p class="hero-desc">
+        Statistics graduate with practical experience in data entry, quality control, and financial administration. Proficient in STATA, SPSS, R, and Excel, with strong attention to detail and experience supporting monitoring, evaluation, and reporting activities in both NGO and corporate environments.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+
+    <!-- PROFILE PHOTO -->
+    <div class="hero-photo-col">
+      <div class="photo-ring">
+        <img src="profile.jpg" alt="Faustin Nizeyimana">
+      </div>
+      <div class="photo-caption">
+        <strong>Faustin Nizeyimana</strong>
+        <span>BSc Applied Statistics &amp; Demography<br>University of Rwanda · 2024</span>
+      </div>
+      <div class="hero-socials">
+        <a href="https://www.linkedin.com/in/faustinnizeyimana?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging_conversation_detail%3BPDD5xohAT7mRDQwFraDVGg%3D%3D" target="_blank" class="social-pill li">💼 LinkedIn</a>
+        <a href="https://wa.me/250784885925" target="_blank" class="social-pill wa">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="section-inner">
+    <div class="section-tag">About Me</div>
+    <div class="about-grid">
+      <div>
+        <h2 class="section-title">Who I Am</h2>
+        <div class="about-text">
+          <p>
+            I am a Rwandan statistics graduate with practical experience in data entry, quality control, and financial administration. My analytical work spans NGO and corporate environments, where I have supported monitoring, evaluation, and reporting functions with accuracy and consistency.
+          </p>
+          <p>
+            I hold a BSc in Applied Statistics and Demography from the University of Rwanda (Class of 2024), where I developed a solid foundation in statistics, demographic analysis, and survey research.
+          </p>
+          <p>
+            I am comfortable working with large datasets, supporting data collection activities, and preparing clear reports to support decision-making at organisational and community levels.
+          </p>
+        </div>
+
+        <div class="skills-group" style="margin-top:28px;">
+          <div class="skills-label">Statistical &amp; Technical Tools</div>
+          <div class="skills-list">
+            <span class="skill-tag">STATA</span>
+            <span class="skill-tag">SPSS</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">Google Workspace</span>
+            <span class="skill-tag">KoBoToolbox</span>
+            <span class="skill-tag">Google Forms</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-label">Professional Skills</div>
+          <div class="skills-list">
+            <span class="skill-tag">Data Collection</span>
+            <span class="skill-tag">Data Visualization</span>
+            <span class="skill-tag">Report Writing</span>
+            <span class="skill-tag">Quality Control</span>
+            <span class="skill-tag">M&amp;E Support</span>
+            <span class="skill-tag">Questionnaire Design</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-label">Soft Skills</div>
+          <div class="skills-list">
+            <span class="skill-tag soft">Time Management</span>
+            <span class="skill-tag soft">Teamwork</span>
+            <span class="skill-tag soft">Communication</span>
+          </div>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-label">Languages</div>
+          <div class="skills-list">
+            <span class="lang-tag">English: Fluent</span>
+            <span class="lang-tag">Kinyarwanda: Native</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">2024</div>
+          <div class="stat-label">BSc Graduated</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:#2563eb">14K+</div>
+          <div class="stat-label">Survey Records Analyzed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:#10b981">10+</div>
+          <div class="stat-label">Interactive Charts Built</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:#f59e0b">5</div>
+          <div class="stat-label">Provinces Covered</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOCUS AREAS -->
+<section class="section focus" id="focus">
+  <div class="section-inner">
+    <div class="section-tag">Expertise</div>
+    <h2 class="section-title">Areas of Focus</h2>
+    <p class="section-desc">Four core domains where my statistical training and fieldwork experience combine to deliver value.</p>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="focus-icon">📊</div>
+        <div class="focus-title">Data Analysis</div>
+        <div class="focus-desc">
+          Skilled in descriptive statistics, cross-tabulations, correlation, and regression using STATA, SPSS, R, and Excel.
+        </div>
+        <div class="focus-tags">
+          <span class="focus-tag">STATA</span>
+          <span class="focus-tag">SPSS</span>
+          <span class="focus-tag">Python</span>
+          <span class="focus-tag">Excel</span>
+          <span class="focus-tag">R</span>
+        </div>
+      </div>
+      <div class="focus-card">
+        <div class="focus-icon">🔬</div>
+        <div class="focus-title">Research Projects</div>
+        <div class="focus-desc">
+          Experience in questionnaire design, data cleaning, data validation, report writing, and research documentation.
+        </div>
+        <div class="focus-tags">
+          <span class="focus-tag">Questionnaire Design</span>
+          <span class="focus-tag">Data Cleaning</span>
+          <span class="focus-tag">Report Writing</span>
+        </div>
+      </div>
+      <div class="focus-card">
+        <div class="focus-icon">🤝</div>
+        <div class="focus-title">Volunteerism</div>
+        <div class="focus-desc">
+          Committed to promoting data literacy and supporting NGOs and community organisations with data collection and evidence-based decision-making.
+        </div>
+        <div class="focus-tags">
+          <span class="focus-tag">M&amp;E Support</span>
+          <span class="focus-tag">KoBoToolbox</span>
+          <span class="focus-tag">Community Data</span>
+        </div>
+      </div>
+      <div class="focus-card">
+        <div class="focus-icon">💻</div>
+        <div class="focus-title">Tech-Based Work</div>
+        <div class="focus-desc">
+          Skilled in developing interactive dashboards and visual reports for effective data communication.
+        </div>
+        <div class="focus-tags">
+          <span class="focus-tag">Plotly</span>
+          <span class="focus-tag">Python</span>
+          <span class="focus-tag">Data Viz</span>
+          <span class="focus-tag">Dashboards</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section projects on-dark" id="projects">
+  <div class="section-inner">
+    <div class="section-tag">Portfolio</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-desc">Selected analytical work built from real survey microdata and delivered as interactive tools.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-badge">Public Health · Data Viz</div>
+        <div class="project-title">🇷🇼 Rwanda DHS 2019-20 Interactive Dashboard</div>
+        <div class="project-desc">
+          A 10-chart interactive dashboard built from DHS microdata covering 14,634 women,
+          12,949 households, and 8,092 children under 5. Covers fertility, maternal health,
+          child nutrition, HIV knowledge, household assets, and province-level comparisons.
+        </div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Plotly</span>
+          <span class="project-tag">DHS Microdata</span>
+          <span class="project-tag">Pandas</span>
+        </div>
+        <a href="Rwanda_DHS_Dashboard.html" class="project-link">View Dashboard →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTIFICATIONS -->
+<section class="section education" id="education">
+  <div class="section-inner">
+    <div class="section-tag">Credentials</div>
+    <h2 class="section-title">Education &amp; Certifications</h2>
+    <p class="section-desc">Academic background and professional certifications. Click any card to view the document.</p>
+
+    <!-- DEGREE -->
+    <div class="edu-grid" style="grid-template-columns:1fr;max-width:680px;">
+      <div class="edu-card">
+        <div class="edu-card-top">
+          <div class="edu-card-header">
+            <div class="edu-icon">🎓</div>
+            <div>
+              <div class="edu-degree">BSc Applied Statistics &amp; Demography</div>
+              <div class="edu-school">University of Rwanda</div>
+              <div class="edu-year">2021 - 2024 · 3 Years · Graduated</div>
+            </div>
+          </div>
+          <div class="edu-desc" style="padding:0;margin-top:0;">
+            Three-year undergraduate programme covering statistical theory, demographic methods,
+            survey sampling, population analysis, public health statistics, and applied research methodology.
+          </div>
+        </div>
+        <hr class="edu-divider">
+        <button class="pdf-toggle-btn" onclick="togglePDF('degree-viewer', this)">
+          <span>📄 View Degree Certificate</span>
+          <span class="toggle-arrow" id="degree-viewer-arrow">▼</span>
+        </button>
+        <div class="pdf-viewer" id="degree-viewer">
+          <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+          <iframe src="degree.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div style="margin-top:48px;">
+      <div class="section-tag" style="margin-bottom:8px;">Certifications</div>
+      <h3 style="font-size:22px;font-weight:800;color:var(--gray-900);letter-spacing:-0.5px;margin-bottom:28px;">Professional Certificates</h3>
+      <div class="cert-grid">
+
+        <!-- CERT 1 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">📊</div>
+            <div>
+              <div class="cert-name">Data Analysis Certificate</div>
+              <div class="cert-issuer">Institution Name</div>
+              <div class="cert-year">Year</div>
+            </div>
+          </div>
+          <button class="pdf-toggle-btn" onclick="togglePDF('cert1-viewer', this)">
+            <span>📄 View Certificate</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="pdf-viewer" id="cert1-viewer">
+            <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+            <iframe src="cert1.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <!-- CERT 2 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">📈</div>
+            <div>
+              <div class="cert-name">SPSS / STATA Certificate</div>
+              <div class="cert-issuer">Institution Name</div>
+              <div class="cert-year">Year</div>
+            </div>
+          </div>
+          <button class="pdf-toggle-btn" onclick="togglePDF('cert2-viewer', this)">
+            <span>📄 View Certificate</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="pdf-viewer" id="cert2-viewer">
+            <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+            <iframe src="cert2.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <!-- CERT 3 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">🏛️</div>
+            <div>
+              <div class="cert-name">CRVS Certificate</div>
+              <div class="cert-issuer">Institution Name</div>
+              <div class="cert-year">Year</div>
+            </div>
+          </div>
+          <button class="pdf-toggle-btn" onclick="togglePDF('cert3-viewer', this)">
+            <span>📄 View Certificate</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="pdf-viewer" id="cert3-viewer">
+            <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+            <iframe src="cert3.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <!-- CERT 4 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">🤖</div>
+            <div>
+              <div class="cert-name">Data Science Certification</div>
+              <div class="cert-issuer">Institution Name</div>
+              <div class="cert-year">Year</div>
+            </div>
+          </div>
+          <button class="pdf-toggle-btn" onclick="togglePDF('cert4-viewer', this)">
+            <span>📄 View Certificate</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="pdf-viewer" id="cert4-viewer">
+            <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+            <iframe src="cert4.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section class="section resume-section" id="resume">
+  <div class="section-inner">
+    <div class="resume-box">
+      <div>
+        <h3>📋 My Resume / CV</h3>
+        <p>Click to view my full CV inline below, covering my education, skills, experience, and projects.</p>
+      </div>
+      <div class="resume-btns">
+        <button onclick="togglePDF('resume-viewer', document.getElementById('resume-toggle-btn'))" class="btn-primary" id="resume-toggle-btn" style="cursor:pointer;border:none;">
+          View Resume
+        </button>
+      </div>
+    </div>
+    <div class="resume-embed">
+      <div class="pdf-viewer" id="resume-viewer">
+        <div class="resume-pdf-wrap">
+          <div class="resume-pdf-header">
+            <span>📄 Resume — Faustin Nizeyimana</span>
+            <span style="font-size:11px;color:var(--blue-400);">🔒 View only — downloading is disabled</span>
+          </div>
+          <iframe src="resume.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact on-dark" id="contact">
+  <div class="section-inner">
+    <div class="section-tag">Get in Touch</div>
+    <h2 class="section-title">Contact Me</h2>
+    <p class="section-desc">Open to research collaborations, data analysis projects, M&amp;E roles, and opportunities across NGO and corporate settings.</p>
+    <div class="contact-grid">
+
+      <div class="contact-card">
+        <h3>Direct Contact</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:faustin@tuta.io">faustin@tuta.io</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Kigali, Rwanda</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🎓</div>
+          <div>
+            <div class="contact-label">Education</div>
+            <div class="contact-value">University of Rwanda · Class of 2024</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💼</div>
+          <div>
+            <div class="contact-label">Available For</div>
+            <div class="contact-value">Research · Analysis · M&amp;E · Collaboration</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h3>Connect on Platforms</h3>
+        <div class="platform-grid">
+          <a href="https://www.linkedin.com/in/faustinnizeyimana?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging_conversation_detail%3BPDD5xohAT7mRDQwFraDVGg%3D%3D" target="_blank" class="platform-btn li">
+            <span class="platform-icon">💼</span>
+            <div>
+              <div class="platform-sub">LinkedIn</div>
+              <div>Connect</div>
+            </div>
+          </a>
+          <a href="https://wa.me/250784885925" target="_blank" class="platform-btn wa">
+            <span class="platform-icon">💬</span>
+            <div>
+              <div class="platform-sub">WhatsApp</div>
+              <div>Message Me</div>
+            </div>
+          </a>
+          <a href="https://github.com/FAUSTIN-1" target="_blank" class="platform-btn">
+            <span class="platform-icon">🐙</span>
+            <div>
+              <div class="platform-sub">GitHub</div>
+              <div>My Projects</div>
+            </div>
+          </a>
+          <a href="mailto:faustin@tuta.io" class="platform-btn">
+            <span class="platform-icon">📧</span>
+            <div>
+              <div class="platform-sub">Email</div>
+              <div>Write Me</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div>© <strong>Faustin Nizeyimana</strong> · 2026 · All rights reserved</div>
+    <div class="footer-flag">
+      <div style="background:#20603D"></div>
+      <div style="background:#FAD201"></div>
+      <div style="background:#20A0D0"></div>
+    </div>
+  </div>
+  <div class="footer-right">
+    <div>BSc Applied Statistics &amp; Demography · University of Rwanda · Class of 2024</div>
+
+  </div>
+</footer>
+
+<script>
+  function toggleNav(){
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('#navLinks a').forEach(function(a){
+    a.addEventListener('click',function(){
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  function togglePDF(viewerId, btn) {
+    var viewer = document.getElementById(viewerId);
+    var isOpen = viewer.classList.contains('open');
+    viewer.classList.toggle('open');
+    var arrow = btn.querySelector ? btn.querySelector('.toggle-arrow') : null;
+    if (arrow) {
+      arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+    if (!isOpen) {
+      setTimeout(function(){
+        viewer.scrollIntoView({behavior:'smooth', block:'nearest'});
+      }, 150);
+    }
+  }
+</script>
+
+</body>
+</html>
