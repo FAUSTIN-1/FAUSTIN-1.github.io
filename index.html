@@ -529,9 +529,10 @@
         </button>
         <div class="pdf-viewer" id="transcript-viewer">
           <div class="no-download-bar">🔒 View only — downloading is disabled</div>
-          <div class="cert2-rotate-wrap" style="height:clamp(500px,75vh,900px);">
-            <iframe data-src="transcript.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
-            <div class="pdf-shield" oncontextmenu="return false;"></div>
+          <div style="position:relative;width:100%;height:clamp(500px,75vh,900px);overflow:hidden;">
+            <iframe data-src="transcript.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"
+              style="position:absolute;top:0;left:0;width:133%;height:133%;transform:rotate(90deg) translateY(-100%);transform-origin:top left;border:none;display:block;"></iframe>
+            <div style="position:absolute;inset:0;z-index:2;background:transparent;cursor:default;" oncontextmenu="return false;"></div>
           </div>
         </div>
       </div>
