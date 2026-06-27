@@ -499,7 +499,7 @@
         <div class="pdf-viewer" id="degree-viewer">
           <div class="no-download-bar">🔒 View only — downloading is disabled</div>
           <div class="pdf-frame-wrap">
-            <iframe src="degree.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+            <iframe data-src="degree.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
             <div class="pdf-shield" oncontextmenu="return false;"></div>
           </div>
         </div>
@@ -529,7 +529,7 @@
           <div class="pdf-viewer" id="cert1-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
             <div class="pdf-frame-wrap">
-              <iframe src="cert1.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <iframe data-src="cert1.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
               <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
@@ -552,7 +552,7 @@
           <div class="pdf-viewer" id="cert2-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
             <div class="cert2-rotate-wrap">
-              <iframe src="cert2.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <iframe data-src="cert2.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
               <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
@@ -575,7 +575,7 @@
           <div class="pdf-viewer" id="cert3-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
             <div class="pdf-frame-wrap">
-              <iframe src="cert3.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <iframe data-src="cert3.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
               <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
@@ -598,7 +598,7 @@
           <div class="pdf-viewer" id="cert4-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
             <div class="pdf-frame-wrap">
-              <iframe src="cert4.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <iframe data-src="cert4.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
               <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
@@ -621,7 +621,7 @@
           <div class="pdf-viewer" id="cert5-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
             <div class="pdf-frame-wrap">
-              <iframe src="cert5.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <iframe data-src="cert5.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
               <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
@@ -644,7 +644,7 @@
           <div class="pdf-viewer" id="cert6-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
             <div class="pdf-frame-wrap">
-              <iframe src="cert6.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <iframe data-src="cert6.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
               <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
@@ -667,7 +667,7 @@
           <div class="pdf-viewer" id="cert7-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
             <div class="pdf-frame-wrap">
-              <iframe src="cert7.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <iframe data-src="cert7.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
               <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
@@ -690,7 +690,7 @@
           <div class="pdf-viewer" id="cert8-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
             <div class="pdf-frame-wrap">
-              <iframe src="cert8.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <iframe data-src="cert8.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
               <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
@@ -722,7 +722,7 @@
             <span>📄 Resume — Faustin Nizeyimana</span>
             <span style="font-size:11px;color:var(--blue-400);">🔒 View only — downloading is disabled</span>
           </div>
-          <iframe src="resume.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy" style="width:100%;height:clamp(400px,70vh,780px);border:none;display:block;"></iframe>
+          <iframe data-src="resume.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy" style="width:100%;height:clamp(400px,70vh,780px);border:none;display:block;"></iframe>
           <div class="pdf-shield" oncontextmenu="return false;" style="position:absolute;inset:0;z-index:2;background:transparent;cursor:default;"></div>
         </div>
       </div>
@@ -918,6 +918,14 @@
       arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
     }
     if (!isOpen) {
+      /* Lazy-load: only inject src the first time the viewer opens */
+      var iframe = viewer.querySelector('iframe');
+      if (iframe) {
+        var dataSrc = iframe.getAttribute('data-src');
+        if (dataSrc && !iframe.getAttribute('src')) {
+          iframe.setAttribute('src', dataSrc);
+        }
+      }
       setTimeout(function(){
         viewer.scrollIntoView({behavior:'smooth', block:'nearest'});
       }, 150);
