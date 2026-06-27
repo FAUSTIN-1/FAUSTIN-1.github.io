@@ -584,10 +584,9 @@
           </button>
           <div class="pdf-viewer" id="cert2-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
-            <div style="position:relative;width:100%;height:clamp(420px,70vh,850px);overflow:hidden;">
-              <iframe data-src="cert2.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"
-                style="position:absolute;top:50%;left:50%;width:150%;height:150%;transform:rotate(90deg) translate(-50%,-50%);transform-origin:center center;border:none;display:block;"></iframe>
-              <div style="position:absolute;inset:0;z-index:2;background:transparent;cursor:default;" oncontextmenu="return false;"></div>
+            <div class="pdf-frame-wrap">
+              <iframe data-src="cert2.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
         </div>
@@ -654,10 +653,9 @@
           </button>
           <div class="pdf-viewer" id="cert5-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
-            <div style="position:relative;width:100%;height:clamp(420px,70vh,850px);overflow:hidden;">
-              <iframe data-src="Cert5.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"
-                style="position:absolute;top:50%;left:50%;width:150%;height:150%;transform:rotate(90deg) translate(-50%,-50%);transform-origin:center center;border:none;display:block;"></iframe>
-              <div style="position:absolute;inset:0;z-index:2;background:transparent;cursor:default;" oncontextmenu="return false;"></div>
+            <div class="pdf-frame-wrap">
+              <iframe data-src="Cert5.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
             </div>
           </div>
         </div>
