@@ -132,17 +132,27 @@
     .pdf-toggle-btn .toggle-arrow{transition:transform 0.3s;font-style:normal;font-size:14px;}
     .pdf-viewer{display:none;border-top:1px solid var(--blue-200);background:var(--gray-50);}
     .pdf-viewer.open{display:block;}
-    .pdf-viewer iframe{width:100%;height:480px;border:none;display:block;}
     .pdf-viewer .no-download-bar{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px;background:var(--blue-50);font-size:11px;color:var(--blue-600);font-weight:600;}
 
     /* cert cards grid */
-    .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px;}
+    .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:32px;}
     .cert-card{background:var(--white);border:1px solid var(--gray-200);border-radius:12px;overflow:hidden;}
     .cert-card-top{padding:20px 20px 14px;display:flex;gap:12px;align-items:flex-start;}
     .cert-icon{width:40px;height:40px;border-radius:8px;background:var(--blue-50);border:1px solid var(--blue-200);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
     .cert-name{font-size:13px;font-weight:700;color:var(--gray-900);margin-bottom:2px;}
     .cert-issuer{font-size:11px;color:var(--blue-500);font-weight:600;}
     .cert-year{font-size:11px;color:var(--gray-400);}
+    /* PDF iframe — taller on wide screens, full-height feel on mobile */
+    .pdf-viewer iframe{width:100%;height:clamp(320px,60vh,680px);border:none;display:block;}
+
+    /* No-download overlay — transparent shield on top of every iframe */
+    .pdf-frame-wrap{position:relative;width:100%;height:clamp(320px,60vh,680px);}
+    .pdf-frame-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block;}
+    .pdf-frame-wrap .pdf-shield{position:absolute;inset:0;z-index:2;background:transparent;cursor:default;-webkit-user-select:none;user-select:none;}
+    /* For cert2 rotated layout */
+    .cert2-rotate-wrap{overflow:hidden;width:100%;position:relative;height:clamp(320px,60vh,680px);}
+    .cert2-rotate-wrap iframe{width:141%;height:141%;transform:rotate(90deg) translateX(0%) translateY(-29%);transform-origin:top left;border:none;display:block;position:absolute;}
+    .cert2-rotate-wrap .pdf-shield{position:absolute;inset:0;z-index:2;background:transparent;cursor:default;}
 
     /* RESUME */
     .resume-section{background:var(--white);}
@@ -151,8 +161,8 @@
     .resume-box p{font-size:14px;color:var(--blue-200);max-width:420px;line-height:1.7;}
     .resume-btns{display:flex;gap:12px;flex-wrap:wrap;}
     .resume-embed{margin-top:28px;}
-    .resume-pdf-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--gray-200);}
-    .resume-pdf-wrap iframe{width:100%;height:520px;border:none;display:block;}
+    .resume-pdf-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--gray-200);position:relative;}
+    .resume-pdf-wrap iframe{width:100%;height:clamp(400px,70vh,780px);border:none;display:block;}
     .resume-pdf-header{display:flex;align-items:center;justify-content:space-between;background:var(--blue-50);border-bottom:1px solid var(--blue-200);padding:10px 20px;}
     .resume-pdf-header span{font-size:12px;font-weight:700;color:var(--blue-600);}
     .resume-close-btn{background:none;border:none;font-size:18px;cursor:pointer;color:var(--blue-600);line-height:1;}
@@ -241,7 +251,7 @@
       </div>
       <h1>Statistician &amp;<br><span class="accent">Data Analyst</span></h1>
       <p class="hero-desc">
-        Statistics graduate with practical experience in data entry, quality control, and financial administration. Proficient in STATA, SPSS, Python, and Excel, with strong attention to detail and experience supporting monitoring, evaluation, and reporting activities in both NGO and corporate environments.
+        Statistics graduate with practical experience in data entry, quality control, and financial administration. Proficient in STATA, SPSS, R, and Excel, with strong attention to detail and experience supporting monitoring, evaluation, and reporting activities in both NGO and corporate environments.
       </p>
       <div class="hero-btns">
         <a href="#projects" class="btn-primary">View My Work</a>
@@ -488,7 +498,10 @@
         </button>
         <div class="pdf-viewer" id="degree-viewer">
           <div class="no-download-bar">🔒 View only — downloading is disabled</div>
-          <iframe src="degree.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+          <div class="pdf-frame-wrap">
+            <iframe src="degree.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+            <div class="pdf-shield" oncontextmenu="return false;"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -505,8 +518,8 @@
             <div class="cert-icon">📊</div>
             <div>
               <div class="cert-name">Data Analysis Certificate</div>
-              <div class="cert-issuer">Institution Name</div>
-              <div class="cert-year">Year</div>
+              <div class="cert-issuer">Ministry of ICT &amp; Innovation</div>
+              <div class="cert-year">2026</div>
             </div>
           </div>
           <button class="pdf-toggle-btn" onclick="togglePDF('cert1-viewer', this)">
@@ -515,7 +528,10 @@
           </button>
           <div class="pdf-viewer" id="cert1-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
-            <iframe src="cert1.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+            <div class="pdf-frame-wrap">
+              <iframe src="cert1.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
+            </div>
           </div>
         </div>
 
@@ -525,8 +541,8 @@
             <div class="cert-icon">📈</div>
             <div>
               <div class="cert-name">SPSS / STATA Certificate</div>
-              <div class="cert-issuer">Institution Name</div>
-              <div class="cert-year">Year</div>
+              <div class="cert-issuer">University of Rwanda</div>
+              <div class="cert-year">2022</div>
             </div>
           </div>
           <button class="pdf-toggle-btn" onclick="togglePDF('cert2-viewer', this)">
@@ -535,7 +551,10 @@
           </button>
           <div class="pdf-viewer" id="cert2-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
-            <iframe src="cert2.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+            <div class="cert2-rotate-wrap">
+              <iframe src="cert2.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
+            </div>
           </div>
         </div>
 
@@ -545,8 +564,8 @@
             <div class="cert-icon">🏛️</div>
             <div>
               <div class="cert-name">CRVS Certificate</div>
-              <div class="cert-issuer">Institution Name</div>
-              <div class="cert-year">Year</div>
+              <div class="cert-issuer">Ministry of Local Government</div>
+              <div class="cert-year">2026</div>
             </div>
           </div>
           <button class="pdf-toggle-btn" onclick="togglePDF('cert3-viewer', this)">
@@ -555,7 +574,10 @@
           </button>
           <div class="pdf-viewer" id="cert3-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
-            <iframe src="cert3.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+            <div class="pdf-frame-wrap">
+              <iframe src="cert3.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
+            </div>
           </div>
         </div>
 
@@ -565,8 +587,8 @@
             <div class="cert-icon">🤖</div>
             <div>
               <div class="cert-name">Data Science Certification</div>
-              <div class="cert-issuer">Institution Name</div>
-              <div class="cert-year">Year</div>
+              <div class="cert-issuer">Ministry of ICT &amp; Innovation</div>
+              <div class="cert-year">2026</div>
             </div>
           </div>
           <button class="pdf-toggle-btn" onclick="togglePDF('cert4-viewer', this)">
@@ -575,13 +597,108 @@
           </button>
           <div class="pdf-viewer" id="cert4-viewer">
             <div class="no-download-bar">🔒 View only — downloading is disabled</div>
-            <iframe src="cert4.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+            <div class="pdf-frame-wrap">
+              <iframe src="cert4.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
+            </div>
           </div>
         </div>
 
-      </div>
-    </div>
-  </div>
+        <!-- CERT 5 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">🌉</div>
+            <div>
+              <div class="cert-name">Bridge Program Certificate</div>
+              <div class="cert-issuer">Carnegie Mellon University Africa</div>
+              <div class="cert-year">2023</div>
+            </div>
+          </div>
+          <button class="pdf-toggle-btn" onclick="togglePDF('cert5-viewer', this)">
+            <span>📄 View Certificate</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="pdf-viewer" id="cert5-viewer">
+            <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+            <div class="pdf-frame-wrap">
+              <iframe src="cert5.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERT 6 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">📉</div>
+            <div>
+              <div class="cert-name">Data Analytics Certificate</div>
+              <div class="cert-issuer">KPMG</div>
+              <div class="cert-year">2023</div>
+            </div>
+          </div>
+          <button class="pdf-toggle-btn" onclick="togglePDF('cert6-viewer', this)">
+            <span>📄 View Certificate</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="pdf-viewer" id="cert6-viewer">
+            <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+            <div class="pdf-frame-wrap">
+              <iframe src="cert6.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERT 7 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">🌐</div>
+            <div>
+              <div class="cert-name">Data Analytics Essentials</div>
+              <div class="cert-issuer">CISCO Networking Academy</div>
+              <div class="cert-year">2026</div>
+            </div>
+          </div>
+          <button class="pdf-toggle-btn" onclick="togglePDF('cert7-viewer', this)">
+            <span>📄 View Certificate</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="pdf-viewer" id="cert7-viewer">
+            <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+            <div class="pdf-frame-wrap">
+              <iframe src="cert7.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERT 8 -->
+        <div class="cert-card">
+          <div class="cert-card-top">
+            <div class="cert-icon">🗂️</div>
+            <div>
+              <div class="cert-name">Product Management</div>
+              <div class="cert-issuer">Ministry of ICT &amp; Innovation</div>
+              <div class="cert-year">2026</div>
+            </div>
+          </div>
+          <button class="pdf-toggle-btn" onclick="togglePDF('cert8-viewer', this)">
+            <span>📄 View Certificate</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="pdf-viewer" id="cert8-viewer">
+            <div class="no-download-bar">🔒 View only — downloading is disabled</div>
+            <div class="pdf-frame-wrap">
+              <iframe src="cert8.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+              <div class="pdf-shield" oncontextmenu="return false;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /cert-grid -->
+    </div><!-- /certifications wrapper -->
+  </div><!-- /section-inner -->
 </section>
 
 <!-- RESUME -->
@@ -605,7 +722,8 @@
             <span>📄 Resume — Faustin Nizeyimana</span>
             <span style="font-size:11px;color:var(--blue-400);">🔒 View only — downloading is disabled</span>
           </div>
-          <iframe src="resume.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy"></iframe>
+          <iframe src="resume.pdf#toolbar=0&navpanes=0&scrollbar=1" loading="lazy" style="width:100%;height:clamp(400px,70vh,780px);border:none;display:block;"></iframe>
+          <div class="pdf-shield" oncontextmenu="return false;" style="position:absolute;inset:0;z-index:2;background:transparent;cursor:default;"></div>
         </div>
       </div>
     </div>
@@ -729,6 +847,15 @@
 </footer>
 
 <script>
+  /* ── Prevent right-click / save-as on all PDF iframes ── */
+  document.addEventListener('contextmenu', function(e){
+    if(e.target.tagName === 'IFRAME' || e.target.closest('.pdf-frame-wrap') || e.target.closest('.cert2-rotate-wrap') || e.target.closest('.resume-pdf-wrap')){
+      e.preventDefault(); return false;
+    }
+  }, true);
+  document.addEventListener('dragstart', function(e){
+    if(e.target.tagName === 'IFRAME'){ e.preventDefault(); }
+  });
   function submitForm() {
     var name = document.getElementById('cf-name').value.trim();
     var email = document.getElementById('cf-email').value.trim();
